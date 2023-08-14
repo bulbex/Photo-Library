@@ -1,0 +1,23 @@
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    .photo-container_img {
+        width: 500px;
+        margin: auto;
+        border-radius: 4px;
+    }
+}
+
+.remove_btn {
+    padding: 1.5rem;
+    font-size: 1rem;
+    margin: 1rem auto;
+}
+
+.error-message {
+    margin: 3rem;
+    text-align: center;
+    font-size: 3rem;
+    color: red;
+}

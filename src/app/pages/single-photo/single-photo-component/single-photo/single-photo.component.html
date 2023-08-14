@@ -1,0 +1,17 @@
+<ng-container *ngIf="!isError">
+    <ng-container *ngIf="photo$ | async as photo">
+        <div class="photo-container">
+            <img [src]="photo.url" alt="Photo with id: {{photo.id}}" class="photo-container_img">
+            <button
+            mat-flat-button
+            color="warn"
+            class="remove_btn"
+            routerLink="/favorites"
+            (click)="removeFromFavorite(photo.id)">Remove from favorites</button>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <h1 class="error-message">An error occured :(</h1>
+</ng-container>

@@ -1,0 +1,20 @@
+<ng-container *ngIf="favorites$ | async as favorites">
+    <div *ngIf="favorites.length" class="photos-container">
+        <img 
+        *ngFor="let photo of favorites"
+        class="photos-container_img"
+        [src]="photo.url"
+        alt="Photo with id: {{photo.id}}"
+        [routerLink]="['/photos', photo.id]"
+        >
+    </div>
+
+    <div *ngIf="!favorites.length">
+        <h1 style="text-align: center;margin-top: 1rem;">You didn't click on any photo on the photo page</h1>
+    </div>
+    
+    <!-- Loading indicator on page init -->
+    <div *ngIf="isLoading" class="loading-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>

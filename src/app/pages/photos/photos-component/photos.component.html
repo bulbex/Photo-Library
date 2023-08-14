@@ -1,0 +1,29 @@
+<ng-container *ngIf="!isError">
+    <ng-container *ngIf="photos$ | async as photos">
+        <div *ngIf="photos.length">
+            <div class="photos-container">
+                <img
+                *ngFor="let photo of photos"
+                class="photos-container_img"
+                [src]="photo.url"
+                alt="Photo with id: {{photo.id}}"
+                (click)="addToFavorites(photo)"
+                >
+            </div>
+    
+            <!-- Loading indicator after all photos -->
+            <div *ngIf="showLoadingIndicator" class="loading-container">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    
+        <!-- Loading indicator on page init -->
+        <div *ngIf="!photos.length" class="loading-container">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <h1 class="error-message">An error occured :(</h1>
+</ng-container>

@@ -1,0 +1,29 @@
+.loading-container {
+    height: calc(100% - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mat-spinner {
+        transform: scale(0.7);
+    }
+}
+
+.photos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    padding: 1rem;
+    gap: 1.5rem;
+    .photos-container_img {
+        border-radius: 4px;
+        cursor: pointer;
+        width: 300px;
+    }
+}
+
+.error-message {
+    margin: 3rem;
+    text-align: center;
+    font-size: 3rem;
+    color: red;
+}
