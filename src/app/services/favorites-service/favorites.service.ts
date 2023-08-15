@@ -18,12 +18,11 @@ export class FavoritesService {
 
     removePhoto(photoId: string) {
         let photoIndex = this.allFavorites.findIndex(photo => photo.id === photoId)
-        let properArray = this.allFavorites
-        properArray.splice(photoIndex, 1)
-
-        photoIndex !== -1
-            ? localStorage.setItem('favorites', JSON.stringify(properArray))
-            : null
+        if (photoIndex !== -1) {
+            let properArray = this.allFavorites
+            properArray.splice(photoIndex, 1)
+            localStorage.setItem('favorites', JSON.stringify(properArray))
+        }
     }
 
     get allFavorites(): Photo[] {
