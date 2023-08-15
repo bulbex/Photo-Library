@@ -18,4 +18,9 @@ describe('SinglePhotoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have photos on init', () => {
+    component.ngOnInit();
+    expect(component.photo$).toBeDefined();
+  });
 });

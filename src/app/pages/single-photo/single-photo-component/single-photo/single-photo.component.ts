@@ -11,14 +11,14 @@ import { FavoritesService } from 'src/app/services/favorites-service/favorites.s
 })
 export class SinglePhotoComponent implements OnInit{
 
-    public photo$ = new Observable<Photo>()
+    public photo$!: Observable<Photo>;
 
     public isError = false
 
-    constructor(private favoriteService: FavoritesService, private route: ActivatedRoute) {}
+    constructor(private favoritesService: FavoritesService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        let photo = this.favoriteService.getPhoto(this.route.snapshot.params['id'])
+        let photo = this.favoritesService.getPhoto(this.route.snapshot.params['id'])
         if (photo !== undefined) {
             this.photo$ = of(photo)
             return
@@ -27,6 +27,6 @@ export class SinglePhotoComponent implements OnInit{
     }
 
     removeFromFavorite(photoId: string) {
-        this.favoriteService.removePhoto(photoId)
+        this.favoritesService.removePhoto(photoId)
     }
 }

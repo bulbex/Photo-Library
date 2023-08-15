@@ -18,4 +18,12 @@ describe('PhotosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have photos after getPhotos() call', (done) => {
+    component.photos$.subscribe((state) => {
+        expect(state).toBeGreaterThanOrEqual(12);
+        done();
+    })
+    expect(component.getPhotos).toHaveBeenCalled()
+  });
 });
