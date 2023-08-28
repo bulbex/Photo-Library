@@ -1,0 +1,45 @@
+<ng-container *ngIf="!isError">
+    <ng-container *ngIf="photos$ | async as photos">
+        <div *ngIf="photos.length > 0">
+            <div 
+            *ngIf="openPhotoId !== ''" 
+            class="open-photo-background"
+            (click)="togglePhoto(openPhotoId)">
+            </div>
+            <div class="photos-container">
+                <div
+                *ngFor="let photo of photos"
+                class="photos-container_img-wrapper"
+                >
+                    <img
+                    [@openPhoto]="openPhotoId === photo.id ? 'open' : 'closed'"
+                    class="photos-container_img"
+                    [src]="photo.url"
+                    alt="Photo with id: {{photo.id}}"
+                    (click)="togglePhoto(photo.id)"
+                    >
+                    <mat-icon 
+                    class="add-to-favorite_button" 
+                    aria-label="Add to favorite" 
+                    (click)="togglePhotoInFavorites(photo)">
+                        {{ photoIsInFavorites(photo.id) ? "star" : "star_border" }}
+                    </mat-icon>
+                </div>
+            </div>
+    
+            <!-- Loading indicator after all photos -->
+            <div *ngIf="showLoadingIndicator" class="loading-container">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    
+        <!-- Loading indicator on page init -->
+        <div *ngIf="!photos.length" class="loading-container">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="isError">
+    <h1 class="error-message">An error occured :(</h1>
+</ng-container>

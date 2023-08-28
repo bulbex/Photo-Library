@@ -8,7 +8,7 @@ export class FavoritesService {
 
     addPhoto(photo: Photo) {
         this.allFavorites.findIndex(favorite => favorite.id === photo.id) === -1
-        ? localStorage.setItem('favorites', JSON.stringify([...this.allFavorites, {...photo}]))
+        ? localStorage.setItem('favorites', JSON.stringify([{...photo}, ...this.allFavorites]))
         : null
     }
 

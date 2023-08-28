@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PhotosComponent } from './pages/photos/photos-component/photos.component';
-import { FavoritesComponent } from './pages/favorites/favorites-component/favorites.component';
-import { SinglePhotoComponent } from './pages/single-photo/single-photo-component/single-photo/single-photo.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PhotosComponent } from './components/photos/photos.component';
 
 const routes: Routes = [
     { path: '', component: PhotosComponent },
-    { path: 'favorites', component: FavoritesComponent},
-    { path: 'photos/:id', component: SinglePhotoComponent},
+    { path: 'favorites', loadComponent: () => import("./components/favorites/favorites.component").then(_ => _.FavoritesComponent)},
+    { path: 'photos/:id', loadComponent: () => import("./components/single-photo/single-photo.component").then(_ => _.SinglePhotoComponent)},
     // Page not found
-    { path: '**', component: PageNotFoundComponent }
+    { path: '**', loadComponent: () => import("./components/page-not-found/page-not-found.component").then(_ => _.PageNotFoundComponent) }
 ];
 
 @NgModule({

@@ -1,0 +1,49 @@
+.loading-container {
+    height: calc(100% - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mat-spinner {
+        transform: scale(0.7);
+    }
+}
+
+.photos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    padding: 1rem;
+    gap: 1.5rem;
+    .photos-container_img-wrapper {
+        position: relative;
+        .photos-container_img {
+            border-radius: 4px;
+            width: 300px;
+        }
+        .add-to-favorite_button {
+            transform: scale(1.2);
+            color: darkorange;
+            cursor: pointer;
+            position: absolute;
+            right: .7rem;
+            top: .7rem;
+            z-index: 1;
+        }
+    }
+}
+
+.open-photo-background {
+    position: fixed;
+    top: -4rem;
+    width: 100%;
+    height: calc(100vh + 4rem);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.error-message {
+    margin: 3rem;
+    text-align: center;
+    font-size: 3rem;
+    color: red;
+}

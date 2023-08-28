@@ -1,0 +1,28 @@
+.header_toolbar {
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    justify-content: space-between;
+    gap: 2rem;
+    .header_toolbar_buttons-container {
+        display: flex;
+        gap: 1rem;
+        .header_toolbar_button {
+            padding: 1rem;
+            font-size: 1rem;
+        }
+        .header_toolbar_button-active {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    .header_toolbar {
+        justify-content: center;
+        .header_toolbar-title {
+            display: none;
+        }
+    }
+}

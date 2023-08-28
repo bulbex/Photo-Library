@@ -1,0 +1,23 @@
+<mat-toolbar class="header_toolbar" color="primary">
+    <h1 class="header_toolbar-title">Random Images Library</h1>
+    <div class="header_toolbar_buttons-container">
+        <button
+        mat-flat-button
+        class="header_toolbar_button"
+        color="primary"
+        routerLink="/"
+        routerLinkActive="header_toolbar_button-active"
+        [routerLinkActiveOptions]="{ exact: true }">
+            Photos
+        </button>
+        <button
+        mat-flat-button
+        class="header_toolbar_button"
+        color="primary"
+        routerLink="/favorites"
+        routerLinkActive="header_toolbar_button-active"
+        [routerLinkActiveOptions]="{ exact: true }">
+            Favorites
+        </button>
+    </div>
+</mat-toolbar>
