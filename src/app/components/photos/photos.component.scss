@@ -16,9 +16,10 @@
     gap: 1.5rem;
     .photos-container_img-wrapper {
         position: relative;
+        min-height: 300px;
         .photos-container_img {
             border-radius: 4px;
-            width: 300px;
+            min-width: 300px;
         }
         .add-to-favorite_button {
             transform: scale(1.2);
