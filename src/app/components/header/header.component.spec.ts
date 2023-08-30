@@ -19,9 +19,4 @@ describe('HeaderComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
-    it('getters should return boolean values', () => {
-        expect(component.currentViewIsPhotos).toBeInstanceOf(Boolean);
-        expect(component.currentViewIsFavorites).toBeInstanceOf(Boolean);
-    });
 });

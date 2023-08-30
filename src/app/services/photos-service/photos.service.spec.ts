@@ -1,26 +1,39 @@
-import { TestBed } from '@angular/core/testing';
-
 import { PhotosService } from './photos.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { of } from 'rxjs';
+
+const stubURL = 'https://fastly.picsum.photos/id/522/1000/1000.jpg?hmac=HIuhZhKfYOqKKtRRSKB0W-ZCvERwgBuSr64k-PgQvlk'
 
 describe('PhotosService', () => {
     let service: PhotosService;
+    let httpClientSpy: jasmine.SpyObj<HttpClient>
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers:[PhotosService],
-            imports: [HttpClientModule]
+        httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
+
+        service = new PhotosService(httpClientSpy);
+    });
+
+    it('#getPhotoURL should return URL string', (done) => {
+        httpClientSpy.get.and.returnValue(of({url: stubURL}))
+
+        service.getPhotoURL().subscribe(URL => {
+            expect(URL).toBe(stubURL);
+            done()
+        })
+    });
+
+    it('#getPhotoURL should return "No photo url!" string when error occurs', (done) => {
+        const errorResponse = new HttpErrorResponse({
+            error: 'test 404 error',
+            status: 404,
+            statusText: 'Not Found'
         });
-        service = TestBed.inject(PhotosService);
-    });
+        
+        httpClientSpy.get.and.returnValue(of(errorResponse));
 
-    it('should be created', () => {
-        expect(service).toBeTruthy();
-    });
-
-    it('should get URL string or mock string on getPhotoURL() call', (done) => {
-        service.getPhotoURL().subscribe(string => {
-            expect(string).toBeInstanceOf(String);
+        service.getPhotoURL().subscribe(URL => {
+            expect(URL).toBe("No photo url!")
             done()
         })
     });

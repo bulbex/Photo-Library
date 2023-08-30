@@ -10,9 +10,8 @@ describe('SinglePhotoComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [SinglePhotoComponent],
             providers: [FavoritesService],
-            imports: [RouterTestingModule]
+            imports: [SinglePhotoComponent, RouterTestingModule]
         });
         fixture = TestBed.createComponent(SinglePhotoComponent);
         component = fixture.componentInstance;
